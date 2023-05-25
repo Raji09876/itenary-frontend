@@ -90,7 +90,7 @@
                       <a class="card-link" href="/place/1"> Dallas Zoo </a>
                     </div>
                     <div class="row">
-                      <img class="col-md-4" src="zoo.jpg" />
+                      <img class="col-md-4" src="/zoo.jpg" />
                       <div class="card-body col-md-8"> The Dallas Zoo, three miles south of downtown, is one of the top attractions in the city, with more than one million guests each year to its collection of just about every type of animal you can think of. More than 2000 animals from 400-plus species are housed in naturalistic habitats across s 106 acres.  </div>
                     </div>
                   </div>
@@ -103,7 +103,7 @@
                       <a class="card-link" href="/place/2"> Reunion Tower </a>
                     </div>
                     <div class="row">
-                      <img class="col-md-4" src="reunion.jpg" />
+                      <img class="col-md-4" src="/reunion.jpg" />
                       <div class="card-body col-md-8">In the heart of downtown Dallas, Reunion Tower is one of the city's most iconic and historical landmarks, and it's also a great place to start your adventure. Head to the GeO-Deck, an observation level that sits 470 feet above the city, providing 360-degree, unobstructed panoramic views day or night </div>
                     </div>
                   </div>
