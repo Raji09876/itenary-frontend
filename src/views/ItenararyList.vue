@@ -28,7 +28,7 @@
               <div class="col-md-4 mb-5">
                     <div class="card h-100">
                         <div class="card-body">
-                           <img src="/Times square.jpg" class="w-100 h-100"/>
+                           <img src="/Timesquare.jpg" class="w-100 h-100"/>
                         </div>
                         <div class="card-footer" style="display: flex;">
                             <h6  class="col-md-6" style="margin-top:5px">NEW YORK</h6>
