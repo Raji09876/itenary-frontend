@@ -1,5 +1,7 @@
 <script setup>
 import MenuBar from "./components/MenuBar.vue";
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.js'
 </script>
 
 <template>
@@ -10,3 +12,9 @@ import MenuBar from "./components/MenuBar.vue";
     </v-main>
   </v-app>
 </template>
+
+<style>
+  a {
+    text-decoration: none;
+  }
+</style>
