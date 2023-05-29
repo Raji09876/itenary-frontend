@@ -1,11 +1,7 @@
 import axios from "axios";
 
-var baseurl = "";
-if (process.env.NODE_ENV === "development") {
-  baseurl = "http://localhost/recipeapi/";
-} else {
-  baseurl = "/recipeapi/";
-}
+var baseurl = "http://ec2-3-12-165-88.us-east-2.compute.amazonaws.com:3100";
+
 
 const apiClient = axios.create({
   baseURL: baseurl,
