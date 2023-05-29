@@ -1,4 +1,41 @@
 <script setup>
+import { onMounted } from "vue";
+import { useRouter } from "vue-router";
+import ItenararyServices from "../services/ItenararyServices.js";
+import PlaceServices from "../services/PlaceServices.js";
+import { ref } from "vue";
+import { getImageUrl,getItenararyUrl,getPlaceUrl } from "../common.js";
+import PageLoader from "../components/PageLoader.vue";
+
+const latestItenararies = ref([]);
+const famousPlaces = ref([]);
+const loader = ref(true);
+
+onMounted(async () => {
+  await getLatestItineraries();
+  await getFamousPlaces();
+  loader.value = false;
+});
+
+async function getLatestItineraries() {
+  await ItenararyServices.getLatestItineraries()
+    .then((response) => {
+      latestItenararies.value = response.data.slice(0, 5);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+async function getFamousPlaces() {
+  await PlaceServices.getFamousPlaces()
+    .then((response) => {
+      famousPlaces.value = response.data.slice(0, 10);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 
 </script>
 
@@ -21,22 +58,11 @@
                   >Latest Itenarary</a
                 >
                 <a
-                  href="/itenarary/1"
+                  :href="getItenararyUrl(itenarary.itinerary_id)"
                   class="list-group-item list-group-item-action"
                   data-category="it"
-                  >DALLAS</a
-                >
-                <a
-                  href="/itenarary/2"
-                  class="list-group-item list-group-item-action"
-                  data-category="finance"
-                  >NEW YORK</a
-                >
-                <a
-                  href="/itenarary/3"
-                  class="list-group-item list-group-item-action"
-                  data-category="banking"
-                  >WASHINGTON D.C</a
+                  v-for="itenarary in latestItenararies" :key="itenarary.itinerary_id"
+                  >{{ itenarary.title.slice(0, 5) }}</a
                 >
                   <a
                   href="/itenararies"
@@ -83,32 +109,19 @@
                 <h2>Famous Places</h2>
                 <a class="show-all" href="/places"> Show All </a>
               </div><br/>
-              <div class="col-md-12">
+              <div class="col-md-12" v-for="place in famousPlaces" :key="place.id" >
                 <div id="accordion">
                   <div class="card">
                     <div class="card-header">
-                      <a class="card-link" href="/place/1"> Dallas Zoo </a>
+                      <a class="card-link" :href="getPlaceUrl(place.id)"> {{ place.title}} </a>
                     </div>
                     <div class="row">
-                      <img class="col-md-4" src="/zoo.jpg" />
-                      <div class="card-body col-md-8"> The Dallas Zoo, three miles south of downtown, is one of the top attractions in the city, with more than one million guests each year to its collection of just about every type of animal you can think of. More than 2000 animals from 400-plus species are housed in naturalistic habitats across s 106 acres.  </div>
+                      <img class="col-md-4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST3mlGz4sWN9xLfi9W-PFMj-iICCLeMUG2Ug&usqp=CAU" />
+                      <div class="card-body col-md-8"> {{ place.description.slice(0, 400) }}... </div>
                     </div>
                   </div>
                 </div>
-              </div><br/>
-              <div class="col-md-12">
-                <div id="accordion">
-                  <div class="card">
-                    <div class="card-header">
-                      <a class="card-link" href="/place/2"> Reunion Tower </a>
-                    </div>
-                    <div class="row">
-                      <img class="col-md-4" src="/reunion.jpg" />
-                      <div class="card-body col-md-8">In the heart of downtown Dallas, Reunion Tower is one of the city's most iconic and historical landmarks, and it's also a great place to start your adventure. Head to the GeO-Deck, an observation level that sits 470 feet above the city, providing 360-degree, unobstructed panoramic views day or night </div>
-                    </div>
-                  </div>
-                </div>
-              </div>   
+              </div><br/>  
         </div>
       </div>
       </div>
