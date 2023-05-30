@@ -43,7 +43,7 @@ async function getPlaces() {
                             <h2 class="card-title">{{ place.title }}</h2>
                             <p class="card-text">{{ place.description.slice(0,200) }}...</p>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="/place/1">More Info</a></div>
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="./place/1">More Info</a></div>
                     </div>
                 </div>
             </div>
