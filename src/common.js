@@ -1,7 +1,6 @@
-export const getImageUrl = (path) => {
-    return "/images/"+path
+export const getImageUrl = (path) => { 
+    return "http://ec2-18-217-185-104.us-east-2.compute.amazonaws.com/travel-frontend/images/"+path 
 }
-
 export const getItenararyUrl = (id) => {
     return "/itenarary/"+id
 } 
