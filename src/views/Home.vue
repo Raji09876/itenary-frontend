@@ -62,7 +62,7 @@ async function getFamousPlaces() {
                   class="list-group-item list-group-item-action"
                   data-category="it"
                   v-for="itenarary in latestItenararies" :key="itenarary.itinerary_id"
-                  >{{ itenarary.title.slice(0, 5) }}</a
+                  >{{ itenarary.title }}</a
                 >
                   <a
                   href="./itenararies"
@@ -116,7 +116,7 @@ async function getFamousPlaces() {
                       <a class="card-link" :href="getPlaceUrl(place.id)"> {{ place.title}} </a>
                     </div>
                     <div class="row">
-                      <img class="col-md-4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST3mlGz4sWN9xLfi9W-PFMj-iICCLeMUG2Ug&usqp=CAU" />
+                      <img class="col-md-4" :src="getImageUrl(place.image_url)" />
                       <div class="card-body col-md-8"> {{ place.description.slice(0, 400) }}... </div>
                     </div>
                   </div>
