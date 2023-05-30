@@ -9,7 +9,7 @@ import { watch } from "vue";
 
 const itenararies = ref([]);
 const apiValue = ref([]);
-const loader = ref(true);
+const loader = ref(true); 
 const search = ref('')
 let timer = null;
 
