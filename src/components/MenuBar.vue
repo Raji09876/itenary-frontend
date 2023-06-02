@@ -4,6 +4,7 @@ import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import UserServices from "../services/UserServices";
 import CategoryServices from "../services/CategoryServices.js";
+import { getCategory } from "../common.js";
 
 const router = useRouter();
 
@@ -15,7 +16,6 @@ onMounted(async () => {
   logoURL.value = ocLogo;
   user.value = JSON.parse(localStorage.getItem("user"));
   await getCategories();
-  loader.value = false;
 });
 
 function logout() {
@@ -40,6 +40,7 @@ async function getCategories() {
       console.log(error);
     });
 }
+
 </script>
 
 <template>
@@ -107,9 +108,11 @@ async function getCategories() {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body row"  v-for="category in categories" :key="category.category_id">
+        <a :href="getCategory(category.id)">
         <div class="col-md-5" style="display:flex;padding:40px;border:1px solid black;margin:10px;align-items:center;justify-content:center;cursor:pointer;">
           <h6 style="margin:auto;"> {{ category.category_name }} </h6>
         </div>
+        </a>
       </div>
     </div>
   </div>
