@@ -3,7 +3,7 @@ import { onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import PlaceServices from "../services/PlaceServices.js";
 import { ref } from "vue";
-import { getImageUrl,getItenararyUrl } from "../common.js";
+import { getPlaceUrl } from "../common.js";
 import PageLoader from "../components/PageLoader.vue";
 
 const places = ref([]);
@@ -60,7 +60,7 @@ watch(search, (newSearch) => {
                             <h2 class="card-title">{{ place.title }}</h2>
                             <p class="card-text">{{ place.description.slice(0,200) }}...</p>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="./places/1">More Info</a></div>
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" :href="getPlaceUrl(place.id)">More Info</a></div>
                     </div>
                 </div>
             </div>
