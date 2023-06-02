@@ -10,6 +10,10 @@ import PageLoader from "../components/PageLoader.vue";
 const latestItenararies = ref([]);
 const famousPlaces = ref([]);
 const loader = ref(true);
+const from = ref('');
+const to = ref('');
+const date_start = ref('');
+const date_end = ref('');
 
 onMounted(async () => {
   await getLatestItineraries();
@@ -26,6 +30,9 @@ async function getLatestItineraries() {
       console.log(error);
     });
 }
+const searchForItenarary = () => {
+  return './itenararies?from='+from.value+'&to='+to.value+'&start='+date_start.value+'&end='+date_end.value
+}
 
 async function getFamousPlaces() {
   await PlaceServices.getFamousPlaces()
@@ -36,7 +43,6 @@ async function getFamousPlaces() {
       console.log(error);
     });
 }
-
 </script>
 
 <template>
@@ -44,12 +50,6 @@ async function getFamousPlaces() {
       <div class="container">
         <div class="row pt-4">
           <div class="col-md-4">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" id="search-field" placeholder="Search Itenarary">
-              <div class="input-group-append">
-                <a href="#" class="btn btn-primary" role="button" id="search-button" style="color:white;">Search</a>
-              </div>
-            </div>
               <ul class="list-group" id="category-filter">
                 <a
                   href="./"
@@ -76,29 +76,29 @@ async function getFamousPlaces() {
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <input type="text" class="form-control" id="from" placeholder="From">
+                        <input type="text" class="form-control" id="from" placeholder="From" v-model="from">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <input type="text" class="form-control" id="to" placeholder="To">
+                        <input type="text" class="form-control" id="to" placeholder="To" v-model="to">
                       </div>
                     </div>
                   </div><br/>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <input type="date" class="form-control" id="departure">
+                        <input type="date" class="form-control" id="departure" v-model="date_start">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <input type="date" class="form-control" id="return">
+                        <input type="date" class="form-control" id="return" v-model="date_end">
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
-                        <button type="submit" class="btn btn-primary search">Search</button>
+                        <a type="submit" class="btn btn-primary search" :href="searchForItenarary()">Search</a>
                       </div>
                     </div>
                   </div>
