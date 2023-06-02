@@ -38,15 +38,17 @@ async function getPlace() {
                 <div class="col-md-6">
                 <p class="col-md-12">{{ place.description}}</p>
                   <div class="card p-3">
-        <div class="d-flex justify-content-between align-items-center">
-        <div class="ratings">
-            <i v-for="index in place.rating" :key="index" class="fa fa-star" style="color: orange;"></i>
-            <i v-for="index in 10 - place.rating" :key="index" class="fa fa-star"></i>
-        <div>
-            <h5 class="review-count">{{ place.reviews }} Reviews</h5>
-        </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="ratings">
+                          <i v-for="index in place.rating" :key="index" class="fa fa-star" style="color: orange;"></i>
+                          <i v-for="index in 10 - place.rating" :key="index" class="fa fa-star"></i>
+                          <div>
+                              <h5 class="review-count">{{ place.reviews }} Reviews</h5>
+                          </div>
+                      </div>
                   </div>
                 </div>
+              </div>
             </div>
       </div>
   </v-container>
