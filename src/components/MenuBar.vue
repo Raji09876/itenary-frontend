@@ -109,7 +109,7 @@ async function getCategories() {
       </div>
       <div class="modal-body row"  v-for="category in categories" :key="category.category_id">
         <div class="col-md-5" style="display:flex;padding:40px;border:1px solid black;margin:10px;align-items:center;justify-content:center;cursor:pointer;">
-          <a :href="getCategory(category.id)"><h6 style="margin:auto;"> {{ category.category_name }} </h6></a>
+          <a :href="getCategory(category.category_id)"><h6 style="margin:auto;"> {{ category.category_name }} </h6></a>
         </div>
       </div>
     </div>
