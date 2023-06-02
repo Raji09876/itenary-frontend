@@ -10,7 +10,7 @@ export default {
   getItinerary(id) {
     return apiClient.get("itineraries/" + id);
   },
-  addItinerary(Itinerary) {
+  addItinerary(Itinerary) { 
     return apiClient.post("itineraries", Itinerary);
   },
   updateItinerary(Itinerary) {
