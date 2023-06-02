@@ -1,8 +1,10 @@
 import apiClient from "./services";
 
 export default {
-  getItineraries() {
-    return apiClient.get("itineraries");
+  getItineraries(queryParameters) {
+    return apiClient.get("itineraries", {
+      params: queryParameters,
+    });
   },
   getLatestItineraries() {
     return apiClient.get("itineraries/date/sort-by-date");

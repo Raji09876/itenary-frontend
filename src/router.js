@@ -19,9 +19,19 @@ const router = createRouter({
       component: () => import("./views/PlaceList.vue"),
     },
     {
+      path: "/places/:id",
+      name: "place",
+      component: () => import("./views/Place.vue"),
+    },
+    {
       path: "/itenararies",
       name: "itenararyList",
       component: () => import("./views/ItenararyList.vue"),
+    },
+    {
+      path: "/itenararies/:id",
+      name: "itenarary",
+      component: () => import("./views/Itenarary.vue"),
     },
     
   ],
