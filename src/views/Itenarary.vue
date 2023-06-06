@@ -6,14 +6,22 @@ import { ref } from "vue";
 import { getImageUrl,getItenararyUrl } from "../common.js";
 import PageLoader from "../components/PageLoader.vue";
 import { watch } from "vue";
+import BookingServices from "../services/BookingServices.js";
 
+
+const snackbar = ref({
+  value: false,
+  color: "",
+  text: "",
+});
 const router = useRouter();
 const itenarary = ref([]);
 const loader = ref(true); 
-
+const user = ref(null);
 onMounted(async () => {
-  await getItinerary();
-  loader.value = false;
+    user.value = JSON.parse(localStorage.getItem("user"));
+    await getItinerary();
+    loader.value = false;
 });
 
 async function getItinerary() {
@@ -35,13 +43,41 @@ const getCollapseDay = (id)=>{
 const getCollapseDayLink = (id)=>{
     return "#"+getCollapseDay(id)
 }
+async function bookNow() {
+    loader.value = true;
+    await BookingServices.addBooking({
+        user_id: user.value.id,
+        itinerary_id : router.currentRoute.value.params.id,
+    })
+    .then((response) => {
+        loader.value = false;
+        snackbar.value.value = true;
+        snackbar.value.color = "green";
+        snackbar.value.text = "Booking placed successfully!";
+    })
+    .catch((error) => {
+      console.log(error);
+        loader.value = false;
+        snackbar.value.value = true;
+        snackbar.value.color = "error";
+        snackbar.value.text = error.response.data.message;
+    });
+}
+
+function closeSnackBar() {
+  snackbar.value.value = false;
+}
+
 </script>
 
 <template>
   <v-container>
         <PageLoader v-if="loader" />
       <div class="container col-md-12" v-else>
+            <div style="display:flex;justify-content: space-between;">
             <h2>{{ itenarary.title }}</h2>
+            <a type="button" class="btn btn-success book" v-if="user != null" @click="bookNow()" >Book Now</a>
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <img :src="getImageUrl(itenarary.image_url)" class="large-image"/>
@@ -73,6 +109,19 @@ const getCollapseDayLink = (id)=>{
                 </div>
             </div>
       </div>
+      <v-snackbar v-model="snackbar.value" rounded="pill">
+        {{ snackbar.text }}
+
+        <template v-slot:actions>
+          <v-btn
+            :color="snackbar.color"
+            variant="text"
+            @click="closeSnackBar()"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
   </v-container>
 </template>
 
@@ -88,5 +137,12 @@ const getCollapseDayLink = (id)=>{
 }
 .showall {
     color:white;margin-left:auto;width:100%;
+}
+
+.book {
+    color: white;
+    margin-right: 10px;
+    height: 40px;
+    background-color: #0d6efd ;
 }
 </style>

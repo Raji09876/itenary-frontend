@@ -59,13 +59,12 @@ async function getCategories() {
         {{ title }}
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      Categories
-      </button> -->
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
         Categories
       </button>
-      <!-- <v-btn class="mx-2" :to="{ name: 'recipes' }" text-transform="none"> Categories </v-btn> -->
+      <a type="button" class="btn btn-primary" v-if="user != null" href="./bookings" >
+        My Bookings
+      </a>
       <v-btn v-if="user === null" class="mx-2" :to="{ name: 'login' }">
         Login
       </v-btn>
@@ -102,7 +101,6 @@ async function getCategories() {
   <div class="modal" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable model-xl">
     <div class="modal-content">
-      <!-- Modal content here -->
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Select Category</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

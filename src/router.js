@@ -33,6 +33,11 @@ const router = createRouter({
       name: "itenarary",
       component: () => import("./views/Itenarary.vue"),
     },
+    {
+      path: "/bookings",
+      name: "booking",
+      component: () => import("./views/MyBookings.vue"),
+    },
     
   ],
 });
