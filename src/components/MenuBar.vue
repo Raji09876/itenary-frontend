@@ -62,7 +62,7 @@ async function getCategories() {
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
         Categories
       </button>
-      <a type="button" class="btn btn-primary" v-if="user != null" href="./bookings" >
+      <a type="button" class="btn btn-primary" v-if="user !== null && user?.admin_role == 0" href="./bookings" >
         My Bookings
       </a>
       <v-btn v-if="user === null" class="mx-2" :to="{ name: 'login' }">
