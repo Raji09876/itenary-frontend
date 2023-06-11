@@ -65,7 +65,7 @@ async function getFamousPlaces() {
                   >{{ itenarary.title }}</a
                 >
                   <a
-                  href="./itenararies"
+                  href="/travel-frontend/itenararies"
                   class="list-group-item list-group-item-action"
                   data-category="banking"
                   style="color:#0d6efd;"
@@ -107,7 +107,7 @@ async function getFamousPlaces() {
           <div class="col-md-8">
               <div class="heading">
                 <h2>Famous Places</h2>
-                <a class="show-all" href="./places"> Show All </a>
+                <a class="show-all" href="/travel-frontend/places"> Show All </a>
               </div><br/>
               <div class="col-md-12" v-for="place in famousPlaces" :key="place.id" >
                 <div id="accordion">
