@@ -68,6 +68,25 @@ function closeSnackBar() {
   snackbar.value.value = false;
 }
 
+async function deleteItinerary() {
+    loader.value = true;
+    await ItenararyServices.deleteItinerary(router.currentRoute.value.params.id)
+    .then((response) => {
+        snackbar.value.value = true;
+        snackbar.value.color = "green";
+        snackbar.value.text = "Itenarary is delete successfully!";
+        router.push({ name: "home" });
+        loader.value = false;
+    })
+    .catch((error) => {
+      console.log(error);
+      snackbar.value.value = true;
+      snackbar.value.color = "error";
+      snackbar.value.text = error.response.data.message;
+      loader.value = false;
+    });
+}
+
 </script>
 
 <template>
@@ -75,8 +94,14 @@ function closeSnackBar() {
         <PageLoader v-if="loader" />
       <div class="container col-md-12" v-else>
             <div style="display:flex;justify-content: space-between;">
-            <h2>{{ itenarary.title }}</h2>
-            <a type="button" class="btn btn-success book" v-if="user != null" @click="bookNow()" >Book Now</a>
+              <h2>{{ itenarary.title }}</h2>
+              <a type="button" class="btn btn-success book" v-if="user !== null && user?.admin_role == 0" @click="bookNow()" >Book Now</a>
+              <div class="settings"  v-if="user!= null && user?.admin_role && user.admin_role != 0">
+                <a class="btn btn-primary" :href="['/travel-frontend/editItenarary/'+itenarary.itinerary_id]">Edit</a>
+                <button class="btn btn-primary" @click="deleteItinerary()" style="margin-left:10px;">
+                    Delete
+                </button>
+              </div>
             </div>
             <div class="row">
                 <div class="col-md-6">

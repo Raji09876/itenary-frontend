@@ -19,6 +19,6 @@ export default {
     return apiClient.put("itineraries/" + Itinerary.id, Itinerary);
   },
   deleteItinerary(ItineraryId) {
-    return apiClient.delete("itineraries/" + planId);
+    return apiClient.delete("itineraries/" + ItineraryId);
   },
 };

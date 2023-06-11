@@ -49,7 +49,10 @@ watch(search, (newSearch) => {
   <v-container>
       <div class="container" style="margin-top:20px">
            <div style="display:flex;">
-              <h3  class="col-md-9">Itenararies</h3>
+              <div style="display:flex;" class="col-md-9">
+                <h3>Itenararies</h3>
+                <a class="btn btn-success add" href="/travel-frontend/additenarary">Add Itinerary</a>
+              </div>
                 <PageLoader v-if="loader" />
                <div class="col-md-3">
                       <div class="form-group">
@@ -73,3 +76,10 @@ watch(search, (newSearch) => {
       </div>
   </v-container>
 </template>
+
+<style scoped>
+.add {
+  background-color: #0d6efd;
+  margin-left: 20px;
+}
+</style>
