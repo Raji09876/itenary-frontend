@@ -71,12 +71,13 @@ function closeSnackBar() {
 async function deleteItinerary() {
     loader.value = true;
     await ItenararyServices.deleteItinerary(router.currentRoute.value.params.id)
-    .then((response) => {
+    .then(async(response) => {
         snackbar.value.value = true;
         snackbar.value.color = "green";
         snackbar.value.text = "Itenarary is delete successfully!";
-        router.push({ name: "home" });
         loader.value = false;
+        await sleep(1000);
+        router.push({ name: "home" });
     })
     .catch((error) => {
       console.log(error);
@@ -85,6 +86,9 @@ async function deleteItinerary() {
       snackbar.value.text = error.response.data.message;
       loader.value = false;
     });
+}
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 </script>
@@ -96,7 +100,7 @@ async function deleteItinerary() {
             <div style="display:flex;justify-content: space-between;">
               <h2>{{ itenarary.title }}</h2>
               <a type="button" class="btn btn-success book" v-if="user !== null && user?.admin_role == 0" @click="bookNow()" >Book Now</a>
-              <div class="settings"  v-if="user!= null && user?.admin_role && user.admin_role != 0">
+              <div class="settings"  v-if="user!= null && user.admin_role != 0">
                 <a class="btn btn-primary" :href="['/travel-frontend/editItenarary/'+itenarary.itinerary_id]">Edit</a>
                 <button class="btn btn-primary" @click="deleteItinerary()" style="margin-left:10px;">
                     Delete

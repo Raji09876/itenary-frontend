@@ -13,8 +13,10 @@ const apiValue = ref([]);
 const loader = ref(true); 
 const search = ref('')
 const queryParameters = ref(router.currentRoute.value.query);
+const user = ref(null);
 
 onMounted(async () => {
+  user.value = JSON.parse(localStorage.getItem("user"));
   await getItineraries();
   loader.value = false;
 });
@@ -51,7 +53,7 @@ watch(search, (newSearch) => {
            <div style="display:flex;">
               <div style="display:flex;" class="col-md-9">
                 <h3>Itenararies</h3>
-                <a class="btn btn-success add" href="/travel-frontend/additenarary">Add Itinerary</a>
+                <a class="btn btn-success add" href="/travel-frontend/additenarary" v-if="user!= null && user.admin_role != 0">Add Itinerary</a>
               </div>
                 <PageLoader v-if="loader" />
                <div class="col-md-3">

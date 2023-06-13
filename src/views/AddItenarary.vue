@@ -86,6 +86,9 @@ const displayError = (message) => {
     snackbar.value.color = "error";
     snackbar.value.text = message;
 }
+const goHome = ()=>{
+  router.push({name: "home"})
+}
 </script>
 
 <template>
@@ -145,7 +148,10 @@ const displayError = (message) => {
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
+        <div style="display:flex;justify-content:space-between;">
+          <v-btn variant="flat" color="primary" @click="goHome()">Go Home</v-btn>
           <v-btn variant="flat" color="primary" @click="addItinerary()">Add</v-btn>
+        </div>
         </v-card-actions>
       </v-card>
       <v-snackbar v-model="snackbar.value" rounded="pill">
