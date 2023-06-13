@@ -78,7 +78,7 @@ async function updateItinerary() {
         .then((response) => {
             snackbar.value.value = true;
             snackbar.value.color = "green";
-            snackbar.value.text = "Itenarary created successfully!";
+            snackbar.value.text = "Itenarary updated successfully!";
             isLoading.value = false
         })
         .catch((error) => {
@@ -105,13 +105,16 @@ async function getItenarary() {
             isLoading.value = false
         });
 }
+const goHome = ()=>{
+  router.push({name: "home"})
+}
 </script>
 
 <template>
   <v-container>
     <div id="body">
       <v-card class="rounded-lg elevation-5">
-        <v-card-title class="headline mb-2">Add Itenarary </v-card-title>
+          <v-card-title class="headline mb-2">Edit Itenarary </v-card-title>
         <PageLoader v-if="isLoading" />
         <v-card-text v-else>
              <v-text-field
@@ -164,7 +167,10 @@ async function getItenarary() {
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn variant="flat" color="primary" @click="updateItinerary()">Update</v-btn>
+          <div style="display:flex;justify-content:space-between;">
+            <v-btn variant="flat" color="primary" @click="goHome()">Go Home</v-btn>
+            <v-btn variant="flat" color="primary" @click="updateItinerary()">Update</v-btn>
+          </div>
         </v-card-actions>
       </v-card>
       <v-snackbar v-model="snackbar.value" rounded="pill">
